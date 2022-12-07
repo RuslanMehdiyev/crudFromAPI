@@ -7,6 +7,8 @@ const updateBtn = document.getElementById("update");
 const url = "https://northwind.vercel.app/api/suppliers";
 
 async function getMethod() {
+  add.style.display = "block ";
+  updateBtn.style.display = "none";
   await axios.get(url).then((res) =>
     res.data.forEach((e) => {
       fillTable(e);
@@ -35,9 +37,9 @@ function fillTable(element) {
   contactName.innerHTML = element.contactName;
   let contactTitle = document.createElement("td");
   contactTitle.innerHTML = element.contactTitle;
-  let button = document.createElement("button");
-  button.setAttribute("id", element.id);
-  button.innerHTML = "Delete";
+  let buttonDelete = document.createElement("button");
+  buttonDelete.setAttribute("id", element.id);
+  buttonDelete.innerHTML = "Delete";
   let buttonUpdate = document.createElement("button");
   buttonUpdate.innerHTML = "Update";
   buttonUpdate.setAttribute("id", element.id);
@@ -46,17 +48,19 @@ function fillTable(element) {
   tr.appendChild(companyName);
   tr.appendChild(contactName);
   tr.appendChild(contactTitle);
-  tr.appendChild(button);
+  tr.appendChild(buttonDelete);
   tr.appendChild(buttonUpdate);
   tbody.appendChild(tr);
 
-  button.addEventListener("click", () => {
-    let id = button.getAttribute("id");
+  buttonDelete.addEventListener("click", () => {
+    let id = buttonDelete.getAttribute("id");
     deleteMethod(id);
   });
 
   //this is update button of 'tr' and here I send ID to the top variable and then catch it in main update button
   buttonUpdate.addEventListener("click", function (e) {
+    add.style.display = "none ";
+    updateBtn.style.display = "block";
     id = buttonUpdate.getAttribute("id");
     let trElement = e.target.parentNode;
     let tdEl = trElement.getElementsByTagName("td");
@@ -70,12 +74,27 @@ function fillTable(element) {
 
 //this is main update button which call putMethod
 updateBtn.addEventListener("click", () => {
+  if (inputName.value == "") {
+    alert("Fill All Inputs");
+    return;
+  } else if (inputContact.value == "") {
+    alert("Fill All Inputs");
+
+    return;
+  } else if (inputTitle.value == "") {
+    alert("Fill All Inputs");
+
+    return;
+  }
   const newObject = {
     companyName: inputName.value,
     contactName: inputContact.value,
     contactTitle: inputTitle.value,
   };
   putMethod(id, newObject);
+  inputContact.value = "";
+  inputName.value = "";
+  inputTitle.value = "";
 });
 
 function putMethod(id, newData) {
@@ -97,6 +116,18 @@ function deleteMethod(id) {
 }
 
 function postMethod() {
+  if (inputName.value == "") {
+    alert("Fill All Inputs");
+    return;
+  } else if (inputContact.value == "") {
+    alert("Fill All Inputs");
+
+    return;
+  } else if (inputTitle.value == "") {
+    alert("Fill All Inputs");
+
+    return;
+  }
   const newObject = {
     companyName: inputName.value,
     contactName: inputContact.value,
