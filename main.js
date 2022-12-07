@@ -50,7 +50,7 @@ function fillTable(element) {
   tr.appendChild(contactTitle);
   tr.appendChild(buttonDelete);
   tr.appendChild(buttonUpdate);
-  tbody.appendChild(tr);
+  tbody.prepend(tr);
 
   buttonDelete.addEventListener("click", () => {
     let id = buttonDelete.getAttribute("id");
