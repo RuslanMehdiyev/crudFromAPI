@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <style>
+    .container {
+      width: 100%;
+      margin: 0 auto;
+      margin: 3rem 0;
+    }
+    .header {
+      width: 100%;
+      max-width: 90%;
+      margin: 2rem auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .table {
+      width: 100%;
+      max-width: 90%;
+      margin: 0 auto;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="header">
+        <label for="name">Company Name</label>
+        <input type="text" name="name" id="name" />
+        <label for="name">Contact Name</label>
+        <input type="text" name="contact" id="contact" />
+        <label for="name">Contact Title</label>
+        <input type="text" name="title" id="title" />
+        <button type="submit" id="add">Add</button>
+        <button type="submit" id="update">Update</button>
+      </div>
+      <table class="w3-table w3-striped w3-border table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Company Name</th>
+            <th>Contact Name</th>
+            <th>Contact Title</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </body>
+  <script src="main.js"></script>
+</html>
